@@ -3,7 +3,7 @@ This neural network was built to classify human poses (standing, bending and cro
 
 ![pose_classification](images/flow.png)
 
-# II/ APPROACH
+# II/ TRAINING AND TEST
 Human keypoints used in this neural network is produced by OpenPose. There are 18 key-points representing for human skeletons as described below:
 
 ![human_ske](images/human_skeleton_coco.png)
@@ -81,3 +81,13 @@ Epoch 500/500
 ```
 
 ![result](images/loss_acc.png)
+
+# III/ RUNNING INFERENCE
+## 1. Convert Keras model to Tensorflow model
+The below code convert Keras model to frozen Tensorflow model
+```python
+python3 keras_to_tensorflow.py -input_model_file pose_classifier.h5
+```
+## 2. Running inference
+18 key-points generated from OpenPose will be used as input for this model.
+See **pose_classifier_inference.ipynb** for details.
