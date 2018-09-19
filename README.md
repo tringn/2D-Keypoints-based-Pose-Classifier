@@ -2,6 +2,7 @@
 This neural network was built to classify human poses (standing, bending and crouching) based on human skeleton information (key-points) produced by OpenPose. 
 
 ![pose_classification](images/flow.png)
+
 # II/ APPROACH
 Human keypoints used in this neural network is produced by OpenPose. There are 18 key-points representing for human skeletons as described below:
 
