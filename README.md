@@ -60,7 +60,7 @@ The center of gravity is calculated as:
 
 Then the coordinate of each keypoint is normalized as:
 
-![normalized_keypoints](normalized_keypoints.png)
+![nor_keypoints](images/normalized_keypoints.png)
 
 Applying pre-processing process, the normalized key-points would be in the similar distribution as original key-points but in range of (-1, 1):
 
