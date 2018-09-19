@@ -32,7 +32,7 @@ The Euclidean distance between two points (A, B) is defined as below:
               return 0
 ```
 
-Since OpenPose does not always generate 18 key-points for each human in the frame because of occlusion or human skeleton cropping, some key-points representing the body part can be omitted (assigned to origin 0). We define the length of head as maximum number among distance from neck to ears, from neck to eyes, from nose to ears and from nose to eyes. This definition of length of head would reduce the probability that length of head is zero. 
+Since OpenPose does not always generate 18 key-points for each human in the frame because of occlusion or human skeleton cropping, some key-points representing the body part can be omitted (assigned to origin 0). Length of head will thus be defined as maximum number among distance from neck to ears, from neck to eyes, from nose to ears and from nose to eyes. This definition of length of head would reduce the probability that length of head is zero. 
 ```python
         length_head = maximum(E_dist(neck, eye), E_dist(neck, ear), E_dist(nose, eye), E_dist(nose, ear))
 ```
@@ -68,14 +68,18 @@ Applying pre-processing process, the normalized key-points would be in the simil
 ![ske_normalized](images/normalized_ske.png)
 
 ## 2. Neural Network
-The normalized coordinates (jn(x) and jn(y)) will be fed into a neural network. Since the input size to neural network is small (size = 36 for 18 key-points), we construct a shallow network with 2 hidden layers for classification. We also apply dropout technique to reduce overfitting.
+The normalized coordinates (jn(x) and jn(y)) will be fed into a neural network. Since the input size to neural network is small (size = 36 for 18 key-points), it only required a shallow network with 2 hidden layers for classification with high accuracy. Dropout technique also is applied to reduce overfitting.
 Neural network is built by Keras as summarized below:
 
 ![neural_network](images/neural_network.png)
 
 ## 3. Result
-```python
+```
 Train on 2676 samples, validate on 701 samples
+```
+
+After 500 epochs: 
+```
 Epoch 500/500
 2676/2676 [==============================] - 0s 38us/step - loss: 0.1567 - acc: 0.9638 - val_loss: 0.1304 - val_acc: 0.9629
 ```
@@ -91,3 +95,18 @@ python3 keras_to_tensorflow.py -input_model_file pose_classifier.h5
 ## 2. Running inference
 18 key-points generated from OpenPose will be used as input for this model.
 See **pose_classifier_inference.ipynb** for details.
+
+# IV/ CITATION
+```
+@article{ refId0,
+	author = {{Pismenskova, Marina} and {Balabaeva, Oxana} and {Voronin, Viacheslav} and {Fedosov, Valentin}},
+	title = {Classification of a two-dimensional pose using a human skeleton},
+	DOI= "10.1051/matecconf/201713205016",
+	url= "https://doi.org/10.1051/matecconf/201713205016",
+	journal = {MATEC Web Conf.},
+	year = 2017,
+	volume = 132,
+	pages = "05016",
+}
+```
+
