@@ -10,7 +10,7 @@ Human keypoints used in this neural network is produced by OpenPose. There are 1
 
 For each person, the coordinates of the singular point in is obtained, where n is the joint number. The size of each human skeleton in a frame is varied due to camera distance and camera angle. To prepare the data for the input of the neural network, the coordinates are normalized relative to the body length and relative to the center of gravity.
 
-##1. How to calculate length of body and center of gravity?
+## 1. How to calculate length of body and center of gravity?
 
 The Euclidean distance between two points (A, B) is defined as below:        
 ```python
@@ -74,4 +74,10 @@ Neural network is built by Keras as summarized below:
 ![neural_network](images/neural_network.png)
 
 ## 3. Result
+```python
+Train on 2676 samples, validate on 701 samples
+Epoch 500/500
+2676/2676 [==============================] - 0s 38us/step - loss: 0.1567 - acc: 0.9638 - val_loss: 0.1304 - val_acc: 0.9629
+```
+
 ![result](images/loss_acc.png)
